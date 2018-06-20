@@ -5,7 +5,13 @@ music_directory = 'E:\Music'
 # Note:
 #   Created `generated` folder first.
 #   The txt file is advised to store inside `generated` folder to be ignored by .gitignore
-txt_file = 'generated/music-list.txt'
+output_file = 'generated/music-list.txt'
+
+# Temporary text file to store all music nested in folders inside music directory
+nested_music_file = 'generated/inside-folder-music.txt'
+
+# Temporary text file to store all music in the root/music directory
+root_music_file = 'generated/inside-folder-music.txt'
 
 # Expected audio file types
 # Note:
