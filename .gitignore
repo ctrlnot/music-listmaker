@@ -1,5 +1,6 @@
 # Binaries
 __pycache__
+*.pyc
 
 # IDE - VSCode
 .vscode*

@@ -1,5 +1,7 @@
 # Music Directory
-music_directory = 'E:\Music'
+music_directory = '/home/xs-dev/Music/Music'
+
+generator_folder = 'generated'
 
 # Filename of text to be generated
 # Note:
@@ -17,4 +19,4 @@ root_music_file = 'generated/inside-folder-music.txt'
 # Note:
 #   The list is incomplete because he is lazy af to write all of them and to research more general solution
 #   Just add if something isn't included 
-audio_file_types = ['.mp3', '.m4a', '.flac', '.wav']
+audio_file_types = ('.mp3', '.m4a', '.flac', '.wav')

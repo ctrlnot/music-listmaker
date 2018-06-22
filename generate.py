@@ -2,54 +2,55 @@ import os
 import config
 import math
 import fileinput
+from generator import Generator
 
 musicTotal = 0
-outputFile = open(config.output_file, 'w', encoding = 'utf-8')
+# outputFile = open(config.output_file, 'w', encoding = 'utf-8')
 # insideFolderMusic = open(config.nested_music_file, 'w', encoding = 'utf-8')
 # rootMusic = open(config.root_music_file, 'w', encoding = 'utf-8')
 
 all_subdirs = []
-def find_subdirs(folder_path, dir_list = None):
-  global all_subdirs
-  dir_ = os.listdir(folder_path)
+# def find_subdirs(folder_path, dir_list = None):
+  # global all_subdirs
+  # dir_ = os.listdir(folder_path)
 
-  # Initialize list if empty
-  if dir_list is None:
-    dir_list = []
+  # # Initialize list if empty
+  # if dir_list is None:
+  #   dir_list = []
 
-  for file_ in dir_:
-    file_path = os.path.join(folder_path, file_)
+  # for file_ in dir_:
+  #   file_path = os.path.join(folder_path, file_)
     
-    if os.path.isdir(file_path):
-      all_subdirs.append(file_path)
-      find_subdirs(file_path)
+  #   if os.path.isdir(file_path):
+  #     all_subdirs.append(file_path)
+  #     find_subdirs(file_path)
 
 
 
-def generateList(musicPath):
-  global musicTotal
-  musicDir = os.listdir(musicPath)
+# def generateList(musicPath):
+  # global musicTotal
+  # musicDir = os.listdir(musicPath)
 
-  for music in musicDir:
-    filePath = os.path.join(musicPath, music)
-    parentDir = os.path.abspath(os.path.join(filePath, os.pardir))
+  # for music in musicDir:
+  #   filePath = os.path.join(musicPath, music)
+  #   parentDir = os.path.abspath(os.path.join(filePath, os.pardir))
 
-    if os.path.isdir(filePath):
-      displayText = addPadding(music) + '\n\n'
-      insideFolderMusic.write(displayText)
+  #   if os.path.isdir(filePath):
+  #     displayText = addPadding(music) + '\n\n'
+  #     insideFolderMusic.write(displayText)
 
-      generateList(filePath)
-    else:
-      displayText = music + '\n\n'
-      fileExtension = os.path.splitext(filePath)[1]
+  #     generateList(filePath)
+  #   else:
+  #     displayText = music + '\n\n'
+  #     fileExtension = os.path.splitext(filePath)[1]
 
-      if fileExtension in config.audio_file_types:
-        musicTotal += 1
+  #     if fileExtension in config.audio_file_types:
+  #       musicTotal += 1
         
-        if parentDir != config.music_directory:
-          insideFolderMusic.write(displayText)
-        else:
-          rootMusic.write(displayText)
+  #       if parentDir != config.music_directory:
+  #         insideFolderMusic.write(displayText)
+  #       else:
+  #         rootMusic.write(displayText)
 
 def addPadding(dirName):
   newDirName = '   ' + dirName + '   '
@@ -83,5 +84,9 @@ def addPadding(dirName):
 # generateList(config.music_directory)
 # concatenateSources()
 # print('Total music files listed: ' + str(musicTotal))
-find_subdirs(config.music_directory)
-print(all_subdirs)
+# find_subdirs(config.music_directory)
+# print(all_subdirs)
+
+g = Generator(config.music_directory, config.output_file)
+# print(g.get_subdirs())
+# print(g.test())
