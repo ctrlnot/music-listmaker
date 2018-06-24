@@ -5,14 +5,17 @@ import config
 
 class Generator:
   total = 0
+  root = None
   subdirs = []
   output_path = None
 
   def __init__(self, root):
-    self.initialize(root)
+    self.root = root
+    self.initialize(self.root)
 
   def initialize(self, dir_):
     self.find_subdirs(dir_)
+    self.subdirs.append(dir_) # Include the root music directory on directory list
     self.create_generator_folder()
     self.output_path = '{}/{}.txt'.format(config.generator_folder, config.output_filename)
 
@@ -31,6 +34,11 @@ class Generator:
       for dir_ in self.subdirs:
         files = os.listdir(dir_)
         dir_name = os.path.basename(os.path.normpath(dir_))
+
+        # If the current dir is the root, set name as 'Root'.. To distinguish the music in the root folder
+        if dir_ == self.subdirs[len(self.subdirs) - 1]:
+          dir_name = '** Root **'
+
         dir_text = self.addPadding(dir_name) + '\n\n'
 
         output_file.write(dir_text)
@@ -56,7 +64,7 @@ class Generator:
     pad = '#'
     dirLen = len(newDirName)
 
-    maxLen = 75
+    maxLen = 80
     spaceLeft = (maxLen - dirLen) / 2
     leftPadLen = math.floor(spaceLeft)
     rightPadLen = int(spaceLeft)
